@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      Hello World | Hexo
+      MyHexo | Hexo
     
   </title>
   <meta name="author" content="John Doe">
@@ -100,7 +100,7 @@
 	<!-- Page title -->
 	<p>
 		
-			「Hello World」
+			「MyHexo」
 		
 	</p>
 
@@ -242,8 +242,8 @@
 	<div id="layout-post">
 		<div class="article-title">
 			
-	<a href="/2020/03/25/hello-world/" itemprop="url">
-		Hello World
+	<a href="/2020/01/16/MyHexo/" itemprop="url">
+		MyHexo
 	</a>
 
 		</div>
@@ -259,9 +259,9 @@
 
 	Updated on
 
-	<a href="/2020/03/25/hello-world/" itemprop="url">
-		<time datetime="2020-03-25T11:20:56.719Z" itemprop="dateUpdated">
-	  		2020-03-25
+	<a href="/2020/01/16/MyHexo/" itemprop="url">
+		<time datetime="2020-01-16T00:20:47.000Z" itemprop="dateUpdated">
+	  		2020-01-16
 	  </time>
 	</a> 
 
@@ -279,19 +279,36 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-			<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+			<p>  <strong>才刚刚弄好博客，本文主要是介绍关于hexo的一些基本用法</strong></p>
+<h2 id="更新hexo主题"><a href="#更新hexo主题" class="headerlink" title="更新hexo主题"></a>更新hexo主题</h2><ul>
+<li>找到喜欢的主题，git clone 到themes/文件夹</li>
+<li>配置主题到blog里面，修改_config.yml文件里面的内容，命令行操作<strong>vim  _config.yml</strong></li>
+<li>修改 theme:  yilia  ——-&gt;  theme:  Annie    <del>改为主题名称</del></li>
+<li>主题链接<a href="https://github.com/Sariay/hexo-theme-Annie" target="_blank" rel="noopener">https://github.com/Sariay/hexo-theme-Annie</a></li>
+<li>Esc + wq    <del>保存退出</del></li>
+<li>hexo  clean  <del>清理缓存文件</del></li>
+<li>hexo  g  <del>生成</del></li>
+<li>hexo  s   <del>sever  重新启动   可在本地预览</del>    </li>
+<li>hexo   d   <del>推到远端</del></li>
+</ul>
+<h5 id="然后就可以通过GitHub的地址访问自己更新主题后的blog了"><a href="#然后就可以通过GitHub的地址访问自己更新主题后的blog了" class="headerlink" title="然后就可以通过GitHub的地址访问自己更新主题后的blog了"></a>然后就可以通过GitHub的地址访问自己更新主题后的blog了</h5><hr>
+<h2 id="写一篇新blog"><a href="#写一篇新blog" class="headerlink" title="写一篇新blog"></a>写一篇新blog</h2><h6 id="markdown语法"><a href="#markdown语法" class="headerlink" title="markdown语法"></a>markdown语法</h6><ul>
+<li>在blog目录下   <strong>hexo n “新博客的标题”</strong></li>
+<li><strong>cd source/_posts/</strong>   编辑生成的  新博客标题.md    命令行  <strong>vim  xxxxx.md</strong></li>
+<li>退回 blog目录</li>
+<li>hexo  clean</li>
+<li>hexo  g </li>
+<li>hexo  s</li>
+<li>hexo d</li>
+</ul>
+<hr>
+<h2 id="搭建自己的博客"><a href="#搭建自己的博客" class="headerlink" title="搭建自己的博客"></a>搭建自己的博客</h2><p>网上的搭建博客的文有很多，我也是在决定搭博客前去Google&amp;Baidu了一波，感觉都挺复杂的。在阅览了N多篇教你如何搭建个人博客的文章后，最终在B站找到了最简单省事的教程，CodeSheep这个up主的视频，特别详细，容易上手。hexo+github ，一个小时左右就可以搭好blog。鉴于本人现在对博客不太熟悉，也没有学习前端，所以就选择了这个简单的方法来搭建博客。等以后想好好经营博客了再考虑换域名和服务器这些东西，现在先就这样了。</p>
+<p>献上教程链接<a href="https://b23.tv/av44544186" target="_blank" rel="noopener">https://b23.tv/av44544186</a></p>
+<ul>
+<li>安装Node.js，官网下载<a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a></li>
+<li>安装Git，官网下载t<a href="https://www.git-scm.com/download/" target="_blank" rel="noopener">https://www.git-scm.com/download/</a></li>
+<li>安装hexo，官网下载hexo<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">https://hexo.io/zh-cn/</a></li>
+</ul>
 	
 		</div>
 		
@@ -310,14 +327,10 @@
 	<span>
 		<a id="totop-post-page">To Top</a>
 		
-			<a href="/2020/03/25/%E5%9C%A8Ubuntu%E4%B8%8A%E5%A2%9E%E5%8A%A0%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%BC%96%E8%AF%91%E5%B9%B6%E5%90%AF%E5%8A%A8%E5%86%85%E6%A0%B8/" title="SystenCall" rel="prev">
+			<a href="/2020/03/25/hello-world/" title="Hello World" rel="prev">
 				&laquo;Pre post
 			</a>
 		
-		
-			<a href="/2020/01/16/MyHexo/" title="MyHexo" rel="next">
-				Next post&raquo;
-			</a>
 			
 	</span>
 
@@ -359,25 +372,22 @@
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/01/16/MyHexo/" title="MyHexo">
-								MyHexo			
+							<a class="relate-post-title" href="/2020/03/25/hello-world/" title="Hello World">
+								Hello World			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								一月 16日, 2020				
+								三月 25日, 2020				
 							</p>
 							<p class="relate-post-content">
-								  才刚刚弄好博客，本文主要是介绍关于hexo的一些基本用法
-更新hexo主题
-找到喜欢的主题，git clone 到themes/文件夹
-配置主题到blog里面，修改_config.yml文件里面的内容，命令行操作vim  _con...
+								Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using ...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2020/01/16/MyHexo/" title="MyHexo">				
+							<a href="/2020/03/25/hello-world/" title="Hello World">				
 								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="MyHexo"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="Hello World"/>
 							</a>
 						</div>
 					</li>												
