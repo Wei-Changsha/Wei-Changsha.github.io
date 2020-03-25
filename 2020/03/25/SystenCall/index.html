@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>SystenCall | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在Ubuntu上增加系统调用，编译并启动内核需求在 Ubuntu 或其他 Linux 平台为 Linux 内核增加 1-3 个新的系统调用，并启用新的内核，编写一个应用程序测试新增加的系统调用是否能正确工作。 准备1.获取Linux内核源代码  linux-4.15.3官网：（下载速度慢） https:&#x2F;&#x2F;www.kernel.org&#x2F; ftp：（下载速度快） http:&#x2F;&#x2F;ftp.sjtu.ed">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SystenCall">
+<meta property="og:url" content="http://yoursite.com/2020/03/25/SystenCall/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在Ubuntu上增加系统调用，编译并启动内核需求在 Ubuntu 或其他 Linux 平台为 Linux 内核增加 1-3 个新的系统调用，并启用新的内核，编写一个应用程序测试新增加的系统调用是否能正确工作。 准备1.获取Linux内核源代码  linux-4.15.3官网：（下载速度慢） https:&#x2F;&#x2F;www.kernel.org&#x2F; ftp：（下载速度快） http:&#x2F;&#x2F;ftp.sjtu.ed">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/BUXsQvczLrSZE9C.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/k4ZTCVJ19DtazPm.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/EbQax1U2viYWmzM.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/pNKL2HmtWG9ncUg.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/HUN8r1lt9P6Mjg5.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/jJVad3i7pvlMmnP.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/DJWyo3BZqrh2si9.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/SDu3oxt7OVwTPXy.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/HWjbZ1Lnpuq72Re.jpg">
+<meta property="article:published_time" content="2020-03-25T12:44:02.000Z">
+<meta property="article:modified_time" content="2020-03-25T12:55:19.745Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="系统调用">
+<meta property="article:tag" content="编译内核">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/03/25/BUXsQvczLrSZE9C.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SystenCall" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/25/SystenCall/" class="article-date">
+  <time datetime="2020-03-25T12:44:02.000Z" itemprop="datePublished">2020-03-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SystenCall
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="在Ubuntu上增加系统调用，编译并启动内核"><a href="#在Ubuntu上增加系统调用，编译并启动内核" class="headerlink" title="在Ubuntu上增加系统调用，编译并启动内核"></a>在Ubuntu上增加系统调用，编译并启动内核</h1><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>在 Ubuntu 或其他 Linux 平台为 Linux 内核增加 1-3 个新的系统调用，并启用新的内核，编写一个应用程序测试新增加的系统调用是否能正确工作。</p>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><h5 id="1-获取Linux内核源代码-linux-4-15-3"><a href="#1-获取Linux内核源代码-linux-4-15-3" class="headerlink" title="1.获取Linux内核源代码  linux-4.15.3"></a>1.获取Linux内核源代码  linux-4.15.3</h5><p>官网：（下载速度慢）</p>
+<p><a href="https://www.kernel.org/" target="_blank" rel="noopener">https://www.kernel.org/</a></p>
+<p>ftp：（下载速度快）</p>
+<p><a href="http://ftp.sjtu.edu.cn/sites/ftp.kernel.org/pub/linux/kernel/" target="_blank" rel="noopener">http://ftp.sjtu.edu.cn/sites/ftp.kernel.org/pub/linux/kernel/</a></p>
+<h5 id="2-解压Linux内核源代码"><a href="#2-解压Linux内核源代码" class="headerlink" title="2.解压Linux内核源代码"></a>2.解压Linux内核源代码</h5><p>● sudo xz –d  linux-4.15.3.tar.xz<br>● sudo tar –xvf linux-4.15.3.tar  -C  /usr/src/</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h5 id="1-添加函数声明：gedit-include-linux-syscalls-h"><a href="#1-添加函数声明：gedit-include-linux-syscalls-h" class="headerlink" title="1.添加函数声明：gedit ./include/linux/syscalls.h"></a>1.添加函数声明：gedit ./include/linux/syscalls.h</h5><p><img src="https://i.loli.net/2020/03/25/BUXsQvczLrSZE9C.png" alt="2.png"> </p>
+<h5 id="2-修改内核代码：定义系统调用gedit-kernel-sys-c"><a href="#2-修改内核代码：定义系统调用gedit-kernel-sys-c" class="headerlink" title="2.修改内核代码：定义系统调用gedit ./kernel/sys.c"></a>2.修改内核代码：定义系统调用gedit ./kernel/sys.c</h5><p><img src="https://i.loli.net/2020/03/25/k4ZTCVJ19DtazPm.png" alt="zzz.png"> </p>
+<h5 id="3-添加系统调用号：系统调用号一定不能和原来的一样"><a href="#3-添加系统调用号：系统调用号一定不能和原来的一样" class="headerlink" title="3.添加系统调用号：系统调用号一定不能和原来的一样"></a>3.添加系统调用号：系统调用号一定不能和原来的一样</h5><p>sudo gedit ./arch/x86/entry/syscalls/syscall_64.tbl </p>
+<p><img src="https://i.loli.net/2020/03/25/EbQax1U2viYWmzM.png" alt="3.png"> </p>
+<h5 id="4-编译安装内核"><a href="#4-编译安装内核" class="headerlink" title="4.编译安装内核"></a>4.编译安装内核</h5><ul>
+<li><p>编译内核可能用到的依赖库安装（部分依赖未安装，在后续操作中根据提示安装）</p>
+<ul>
+<li>sudo apt-get update</li>
+<li>sudo apt-get install libncurses5-dev </li>
+<li>sudo apt-get install build-essential openssl </li>
+<li>sudo apt-get install flex</li>
+<li>sudo apt-get install bison</li>
+<li>sudo apt-get install openssl</li>
+<li>sudo apt-get install libssl-dev</li>
+</ul>
+</li>
+<li><p>配置内核编译参数</p>
+<ul>
+<li>cd  /usr/src/切换到刚才我们解压的内核源代码目录下</li>
+<li>sudo make mrproper清除编译过程产生的中间文件，就是将内核代码还原为刚解压的状态，最好每次编译前执行一下。</li>
+<li>sudo make menuconfig配置编译参数，编译的内核模块选择</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2020/03/25/pNKL2HmtWG9ncUg.jpg" alt="wps9.jpg"> </p>
+<ul>
+<li><p>编译内核</p>
+<ul>
+<li>sudo make bzImage   编译新的内核</li>
+</ul>
+</li>
+<li><p>编译和安装modules</p>
+<ul>
+<li>sudo make modules</li>
+<li>sudo make modules_install</li>
+</ul>
+</li>
+<li><p>安装内核 sudo make install</p>
+</li>
+<li><p>启动新内核  配置/boot/grub/grub.conf</p>
+<ul>
+<li>GRUB_TIME_OUT_STYLE=HIDDEN 这行前面加#号注释掉</li>
+<li>GRUB_CMDLINE_LINUX_DEFAULT=”text”   引号内改为text </li>
+</ul>
+</li>
+<li><p>进入启动菜单启动新内核（按shift键）</p>
+<ul>
+<li>Ubuntu高级选项–&gt;linux 4.15.3（Ubuntu启动正常时推荐使用）</li>
+<li>Ubuntu高级选项–&gt;linux 4.15.3(recovery mode)–&gt;resume（如果Ubuntu启动时一直卡住，无法正常启动，则用recovery mode进入（我用的虚拟机，编译好内核驱动有问题））</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2020/03/25/HUN8r1lt9P6Mjg5.png" alt="xxx.png"> </p>
+<ul>
+<li>查看内核版本  在终端输入 uname -r</li>
+</ul>
+<p><img src="https://i.loli.net/2020/03/25/jJVad3i7pvlMmnP.jpg" alt="wps17.jpg"> </p>
+<h5 id="5-编写调用系统函数的c函数"><a href="#5-编写调用系统函数的c函数" class="headerlink" title="5.编写调用系统函数的c函数"></a>5.编写调用系统函数的c函数</h5><p><img src="https://i.loli.net/2020/03/25/DJWyo3BZqrh2si9.jpg" alt="wps4.jpg"> </p>
+<h5 id="6-测试分别依次输入：gcc-hello-c-o-hello-和-hello"><a href="#6-测试分别依次输入：gcc-hello-c-o-hello-和-hello" class="headerlink" title="6.测试分别依次输入：gcc hello.c -o hello  和 ./hello"></a>6.测试分别依次输入：gcc hello.c -o hello  和 ./hello</h5><p>发现打印出“System call sys_hello:0”，则运行成功  </p>
+<p><img src="https://i.loli.net/2020/03/25/SDu3oxt7OVwTPXy.jpg" alt="wps5.jpg"> </p>
+<h5 id="7-然后用命令dmesg查看结果：打印出“Hello！My-student-ID-is-xxxxxxxxx”，说明系统调用成功。"><a href="#7-然后用命令dmesg查看结果：打印出“Hello！My-student-ID-is-xxxxxxxxx”，说明系统调用成功。" class="headerlink" title="7.然后用命令dmesg查看结果：打印出“Hello！My student ID is xxxxxxxxx”，说明系统调用成功。"></a>7.然后用命令dmesg查看结果：打印出“Hello！My student ID is xxxxxxxxx”，说明系统调用成功。</h5><p><img src="https://i.loli.net/2020/03/25/HWjbZ1Lnpuq72Re.jpg" alt="wps6.jpg"> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/25/SystenCall/" data-id="ck87c0x270000kcu487zl1rcp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/" rel="tag">系统调用</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8/" rel="tag">编译内核</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/25/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/" rel="tag">系统调用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8/" rel="tag">编译内核</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/" style="font-size: 10px;">系统调用</a> <a href="/tags/%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8/" style="font-size: 10px;">编译内核</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/25/SystenCall/">SystenCall</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/25/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
